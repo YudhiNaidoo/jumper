@@ -1,1 +1,30 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+    <div class="column column-12">
+        <h1>My CSS Framework</h1>
+    </div>
+<div class="row">
+    <div class="column column-6">
+        <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+    </div>
+    <div class="column column-6">
+        <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+    </div>
+</div>
+<div class="row">
+    <div class="column column-3">
+        <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+    </div>
+    <div class="column column-3">
+        <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+    </div>
+    <div class="column column-3">
+        <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+    </div>
+    <div class="column column-3">
+        <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+    </div>
+</div>
+{% endblock content %}
