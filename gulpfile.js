@@ -1,108 +1,67 @@
+    // Required
+    var gulp = require('gulp');
+    var uglify = require('gulp-uglify');
+    var rename = require('gulp-rename');
+    var sass = require('gulp-sass');
+    var cssnano = require('gulp-cssnano');
+    var concat = require('gulp-concat');
+    var rev = require('gulp-rev');
+    var clean = require('gulp-clean');
+    var sourcemaps = require('gulp-sourcemaps');
 
-////////////////////////////////
-		//Setup//
-////////////////////////////////
-
-// Plugins
-var gulp = require('gulp'),
-      pjson = require('./package.json'),
-      gutil = require('gulp-util'),
-      sass = require('gulp-sass'),
-      autoprefixer = require('gulp-autoprefixer'),
-      cssnano = require('gulp-cssnano'),
-      rename = require('gulp-rename'),
-      del = require('del'),
-      plumber = require('gulp-plumber'),
-      pixrem = require('gulp-pixrem'),
-      uglify = require('gulp-uglify'),
-      imagemin = require('gulp-imagemin'),
-      exec = require('child_process').exec,
-      runSequence = require('run-sequence'),
-      browserSync = require('browser-sync').create(),
-      reload = browserSync.reload;
-
-
-// Relative paths function
-var pathsConfig = function (appName) {
-  this.app = "./" + (appName || pjson.name);
-
-  return {
-    app: this.app,
-    templates: this.app + '/templates',
-    css: this.app + '/static/css',
-    sass: this.app + '/static/sass',
-    fonts: this.app + '/static/fonts',
-    images: this.app + '/static/images',
-    js: this.app + '/static/js',
-  }
-};
-
-var paths = pathsConfig();
-
-////////////////////////////////
-		//Tasks//
-////////////////////////////////
-
-// Styles autoprefixing and minification
-gulp.task('styles', function() {
-  return gulp.src(paths.sass + '/project.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(plumber()) // Checks for errors
-    .pipe(autoprefixer({browsers: ['last 2 version']})) // Adds vendor prefixes
-    .pipe(pixrem())  // add fallbacks for rem units
-    .pipe(gulp.dest(paths.css))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(cssnano()) // Minifies the result
-    .pipe(gulp.dest(paths.css));
-});
-
-// Javascript minification
-gulp.task('scripts', function() {
-  return gulp.src(paths.js + '/project.js')
-    .pipe(plumber()) // Checks for errors
-    .pipe(uglify()) // Minifies the js
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(paths.js));
-});
-
-// Image compression
-gulp.task('imgCompression', function(){
-  return gulp.src(paths.images + '/*')
-    .pipe(imagemin()) // Compresses PNG, JPEG, GIF and SVG images
-    .pipe(gulp.dest(paths.images))
-});
-
-// Run django server
-gulp.task('runServer', function() {
-  exec('python manage.py runserver', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-  });
-});
-
-// Browser sync server for live reload
-gulp.task('browserSync', function() {
-    browserSync.init(
-      [paths.css + "/*.css", paths.js + "*.js", paths.templates + '*.html'], {
-        proxy:  "localhost:8000"
+    // Clean old files in build before creating new file
+    gulp.task('clean-scripts', function () {
+        return gulp.src('css_framework/static/build/js/*.min.js', {read: false})
+        .pipe(clean());
     });
-});
 
-// Default task
-gulp.task('default', function() {
-    runSequence(['styles', 'scripts', 'imgCompression'], 'runServer', 'browserSync');
-});
+    gulp.task('clean-css', function () {
+        return gulp.src('css_framework/static/build/css/*.min.css', {read: false})
+        .pipe(clean());
+    });
 
-////////////////////////////////
-		//Watch//
-////////////////////////////////
+    // Scripts task
+    // Dont include js from profiles page
+    gulp.task('scripts', ['clean-scripts'], function(){
+        gulp.src(['css_framework/static/src/js/jquery.js',
+            'css_framework/static/src/js/project.js'])
+            .pipe(sourcemaps.init())
+            .pipe(uglify())
+            .pipe(concat('final.js'))
+            .pipe(rename({suffix:'.min'}))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('css_framework/static/build/js'));
+    });
 
-// Watch
-gulp.task('watch', ['default'], function() {
+    // Watch task
+    gulp.task('watch', function(){
+        gulp.watch('css_framework/static/src/**/*.js', ['scripts']);
+        gulp.watch('css_framework/static/src/**/*.scss', ['sass']);
+        gulp.watch('css_framework/static/src/**/*.css', ['css']);
 
-  gulp.watch(paths.sass + '/*.scss', ['styles']);
-  gulp.watch(paths.js + '/*.js', ['scripts']).on("change", reload);
-  gulp.watch(paths.images + '/*', ['imgCompression']);
-  gulp.watch(paths.templates + '/**/*.html').on("change", reload);
+    });
 
-});
+    // Sass task
+    gulp.task('sass', function(){
+        gulp.src('css_framework/static/src/sass/project.scss')
+            .pipe(sass().on('error', sass.logError))
+            .pipe(concat('project.css'))
+            .pipe(gulp.dest('css_framework/static/src/css'));
+    });
+
+
+    // Css task
+    // Dont include css from profiles page
+    gulp.task('css', ['clean-css'], function(){
+        gulp.src('css_framework/static/src/css/*.css')
+            .pipe(sourcemaps.init())
+            .pipe(cssnano())
+            .pipe(concat('final.css'))
+            .pipe(rename({suffix:'.min'}))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('css_framework/static/build/css'));
+    });
+
+
+    // Default task
+    gulp.task('default', ['scripts', 'watch', 'sass', 'css']);
