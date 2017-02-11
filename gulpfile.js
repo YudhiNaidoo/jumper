@@ -8,6 +8,7 @@
     var rev = require('gulp-rev');
     var clean = require('gulp-clean');
     var sourcemaps = require('gulp-sourcemaps');
+    var autoprefixer = require('gulp-autoprefixer');
 
     // Clean old files in build before creating new file
     gulp.task('clean-scripts', function () {
@@ -45,6 +46,16 @@
     gulp.task('sass', function(){
         gulp.src('css_framework/static/src/sass/project.scss')
             .pipe(sass().on('error', sass.logError))
+            .pipe(autoprefixer({
+                "browserslist": [
+                    "Chrome",
+                    "Safari",
+                    "Firefox",
+                    "iOS",
+                    "Explorer"
+                  ],
+                cascade: false
+            }))
             .pipe(concat('project.css'))
             .pipe(gulp.dest('css_framework/static/src/css'));
     });
