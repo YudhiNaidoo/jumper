@@ -24,10 +24,8 @@ sftp-config.json
 __pycache__
 
 # Logs
-logs
 *.log
 pip-log.txt
-npm-debug.log*
 
 # Unit test / coverage reports
 .coverage
@@ -41,15 +39,6 @@ htmlcov
 
 # Pycharm
 .idea/*
-
-# Provided default Pycharm Run/Debug Configurations should be tracked by git
-# In case of local modifications made by Pycharm, use update-index command
-# for each changed file, like this:
-# git update-index --assume-unchanged .idea/css_framework.iml
-!.idea/runConfigurations/
-!.idea/css_framework.iml
-!.idea/vcs.xml
-!.idea/webResources.xml
 
 
 # Vim
@@ -70,6 +59,8 @@ node_modules/
 # User-uploaded media
 css_framework/media/
 
+# Hitch directory
+tests/.hitch
 
-
-staticfiles/
+# MailHog binary
+mailhog
