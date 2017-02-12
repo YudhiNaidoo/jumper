@@ -14,100 +14,58 @@ body {
   background-color: #262626;
 }
 
-
-.row,
-.column {
-    box-sizing: border-box;
+.container-fluid, .container {
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.row:before,
-.row:after {
-    content: " ";
-    display: table;
+.container-fluid {
+  padding-right: var(--outer-margin, 2rem);
+  padding-left: var(--outer-margin, 2rem);
 }
 
-.row:after {
-    clear: both;
+.row {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: var(--gutter-compensation, -0.5rem);
+  margin-left: var(--gutter-compensation, -0.5rem);
 }
 
-.column {
-    position: relative;
-    float: left;
+.row.reverse {
+  flex-direction: row-reverse;
 }
 
-.column + .column {
-    margin-left: 1.6%;
+.col.reverse {
+  flex-direction: column-reverse;
 }
 
-.column-1 {
-    width: 6.86666666667%;
-}
-
-.column-2 {
-    width: 15.3333333333%;
-}
-
-.column-3 {
-    width: 23.8%;
-}
-
-.column-4 {
-    width: 32.2666666667%;
-}
-
-.column-5 {
-    width: 40.7333333333%;
-}
-
-.column-6 {
-    width: 49.2%;
-}
-
-.column-7 {
-    width: 57.6666666667%;
-}
-
-.column-8 {
-    width: 66.1333333333%;
-}
-
-.column-9 {
-    width: 74.6%;
-}
-
-.column-10 {
-    width: 83.0666666667%;
-}
-
-.column-11 {
-    width: 91.5333333333%;
-}
-
-.column-12 {
-    width: 100%;
-    margin-left: 0;
-}
-
-@media only screen and (max-width: 550px) {
-    .column-1,
-    .column-2,
-    .column-3,
-    .column-4,
-    .column-5,
-    .column-6,
-    .column-7,
-    .column-8,
-    .column-9,
-    .column-10,
-    .column-11,
-    .column-12 {
-        float: none;
-        width: auto;
+@mixin columns($values, $name) {
+    @each $var in $values {
+      .col-#{$name}-#{$var} {
+        flex-basis: calc(#{$var} * 8.33333333%);
+        max-width: calc(#{$var} * 8.33333333%);
+      }
+      .col-#{$name}-offset-#{$var} {
+        margin-left: calc(#{$var} * 8.33333333%);
+      }
     }
+}
 
-    .column + .column {
-        margin-left: 0;
-    }
+@include columns(1 2 3 4 5 6 7 8 9 10 11 12, xs);
+
+@media (min-width: 48em) {
+  @include columns(1 2 3 4 5 6 7 8 9 10 11 12, sm);
+}
+
+@media (min-width: 64em) {
+  @include columns(1 2 3 4 5 6 7 8 9 10 11 12, md);
+}
+
+@media (min-width: 75em) {
+  @include columns(1 2 3 4 5 6 7 8 9 10 11 12, lg);
 }
 
 ////////////////////////////////
