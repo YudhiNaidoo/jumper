@@ -41,6 +41,79 @@ body {
   @include columns(1 2 3 4 5 6 7 8 9 10 11 12, lg);
 }
 
+.white {
+  background-color: white;
+}
+.blue {
+  background-color: dodgerblue;
+}
+
+.grey {
+  background-color: grey;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+.flex-item {
+  height:50px;
+  flex:0 1 auto;
+  margin: 8px;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+ul {
+  display: flex;
+  margin: 0;
+  padding:5px;
+}
+
+li {
+  flex: 0 0 auto;
+  padding: 20px 10px;
+  list-style: none;
+  margin: 2px;
+}
+
+nav img {
+  margin-right: auto
+}
+
+.parallax {
+  height: calc(100vh - 75px);
+  background: url(/static/src/images/skyline.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+
 ////////////////////////////////
 		//Utility classes//
 ////////////////////////////////
