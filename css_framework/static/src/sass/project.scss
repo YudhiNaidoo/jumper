@@ -2,9 +2,35 @@
 		//Variables//
 ////////////////////////////////
 
-$white: #fff;
-$mint-green: #d6e9c6;
+@mixin columns($values, $name) {
+  @each $var in $values {
+    .col-#{$name}-#{$var} {
+      flex-basis: calc(#{$var} * 8.33333333%);
+      max-width: calc(#{$var} * 8.33333333%);
+    }
+    .col-#{$name}-offset-#{$var} {
+      margin-left: calc(#{$var} * 8.33333333%);
+    }
+  }
+}
 
+@mixin flex-containers($properties) {
+  @each $var in $properties {
+    .flex-#{$var} {
+      display: flex;
+      flex-direction: #{$var};
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@mixin padding($values) {
+  @each $var in $values {
+    .padding-top-#{$var} {
+      padding-top: #{$var};
+    }
+  }
+}
 //////////////////////////////////
 		//Layout//
 ////////////////////////////////
@@ -12,19 +38,7 @@ $mint-green: #d6e9c6;
 body {
   color: white;
   background-color: #262626;
-}
-
-
-@mixin columns($values, $name) {
-    @each $var in $values {
-      .col-#{$name}-#{$var} {
-        flex-basis: calc(#{$var} * 8.33333333%);
-        max-width: calc(#{$var} * 8.33333333%);
-      }
-      .col-#{$name}-offset-#{$var} {
-        margin-left: calc(#{$var} * 8.33333333%);
-      }
-    }
+  font-size: 100%;
 }
 
 @include columns(1 2 3 4 5 6 7 8 9 10 11 12, xs);
@@ -41,16 +55,6 @@ body {
   @include columns(1 2 3 4 5 6 7 8 9 10 11 12, lg);
 }
 
-.white {
-  background-color: white;
-}
-.blue {
-  background-color: dodgerblue;
-}
-
-.grey {
-  background-color: grey;
-}
 .row {
   display: flex;
   flex-direction: row;
@@ -70,19 +74,14 @@ body {
   justify-content: center;
 }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
+@include flex-containers(row row-reverse column column-reverse);
 
 .flex-item {
   height:50px;
   flex:0 1 auto;
-  margin: 8px;
-  padding: 10px;
-  font-size: 2rem;
+  margin: .625em;
+  padding: .625em .625em 0;
+  font-size: 1.5em;
 }
 
 .flex-1 {
@@ -92,14 +91,14 @@ body {
 ul {
   display: flex;
   margin: 0;
-  padding:5px;
+  padding: .313em;
 }
 
 li {
   flex: 0 0 auto;
-  padding: 20px 10px;
+  padding: 1.25em .625em;
   list-style: none;
-  margin: 2px;
+  margin: .155em;
 }
 
 nav img {
@@ -117,6 +116,17 @@ nav img {
 ////////////////////////////////
 		//Utility classes//
 ////////////////////////////////
+
+.white {
+  background-color: white;
+}
+.blue {
+  background-color: dodgerblue;
+}
+
+.grey {
+  background-color: grey;
+}
 
 .img {
   width: 100%;
