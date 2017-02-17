@@ -1,11 +1,41 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
-<div class="wrap container-fluid">
-    <section class="page-section">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="flex-row parallax">
+            </div>
+        </div>
+
+    </div>
+    <div class="container padding-top-30">
         <div class="row">
-            <div class="col-xs-12">
-                <div class="flex-row parallax">
+            <div class="col-xs-12 col-sm-6">
+                <div class="">
+                    <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+                    <h1>{% lorem 2 w %}</h1>
+                    <p>{% lorem %}</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="">
+                    <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+                    <h1>{% lorem 2 w %}</h1>
+                    <p>{% lorem %}</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="">
+                    <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+                    <h1>{% lorem 2 w %}</h1>
+                    <p>{% lorem %}</p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="">
+                    <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+                    <h1>{% lorem 2 w %}</h1>
+                    <p>{% lorem %}</p>
                 </div>
             </div>
             <div class="col-xs-12">
@@ -17,6 +47,14 @@
                 </div>
             </div>
             <div class="col-xs-12">
+                <div class="flex-row flex-center">
+                    <div class="flex-item blue">Flex Center</div>
+                    <div class="flex-item blue">Flex Center</div>
+                    <div class="flex-item blue">Flex Center</div>
+                    <div class="flex-item blue">Flex Center</div>
+                </div>
+            </div>
+             <div class="col-xs-12">
                 <div class="flex-row flex-end">
                     <div class="flex-item blue">Flex End</div>
                     <div class="flex-item blue">Flex End</div>
@@ -25,25 +63,9 @@
                 </div>
             </div>
             <div class="col-xs-12">
-                <div class="flex-row flex-center">
-                    <div class="flex-item blue">Flex Center</div>
-                    <div class="flex-item blue">Flex Center</div>
-                    <div class="flex-item blue">Flex Center</div>
-                    <div class="flex-item blue">Flex Center</div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-3 col-md-6">
-                <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
-            </div>
-            <div class="col-xs-6 col-sm-3 col-md-6">
-                <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
-            </div>
-            <div class="col-xs-6 col-sm-3 col-md-6">
-                <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
-            </div>
-            <div class="col-xs-6 col-sm-3 col-md-6">
-                <img class="img" src="{% static 'src/images/nothern-lights.jpg' %}">
+                <h1>{% lorem 2 w %}</h1>
+                <p>{% lorem 4 p %}</p>
             </div>
         </div>
-</section>
+    </div>
 {% endblock content %}

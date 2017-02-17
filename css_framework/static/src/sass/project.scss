@@ -27,40 +27,61 @@
 @mixin padding($values) {
   @each $var in $values {
     .padding-top-#{$var} {
-      padding-top: #{$var};
+      padding-top: #{$var}px;
+    }
+    .padding-bottom-#{$var} {
+      padding-bottom: #{$var}px;
     }
   }
 }
 //////////////////////////////////
-		//Layout//
+		//Grid//
 ////////////////////////////////
-
-body {
-  color: white;
-  background-color: #262626;
-  font-size: 100%;
-}
 
 @include columns(1 2 3 4 5 6 7 8 9 10 11 12, xs);
 
 @media (min-width: 48em) {
+  .container {
+    width: 46.125em;
+    max-width: 100%;
+  }
   @include columns(1 2 3 4 5 6 7 8 9 10 11 12, sm);
 }
 
 @media (min-width: 64em) {
+  .container {
+    width: 62.125em;
+    max-width: 100%;
+  }
   @include columns(1 2 3 4 5 6 7 8 9 10 11 12, md);
 }
 
 @media (min-width: 75em) {
+  .container {
+    width: 73.125em;
+    max-width: 100%;
+  }
   @include columns(1 2 3 4 5 6 7 8 9 10 11 12, lg);
 }
 
+div[class^="col-"] {
+  box-sizing: border-box;
+  padding: .5em;
+}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 1em;
+}
 .row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  box-sizing: border-box;
 }
+
+@include flex-containers(row row-reverse column column-reverse);
 
 .flex-start {
   justify-content: flex-start;
@@ -74,7 +95,15 @@ body {
   justify-content: center;
 }
 
-@include flex-containers(row row-reverse column column-reverse);
+//////////////////////////////////
+		//Layout//
+////////////////////////////////
+
+body {
+  color: black;
+  font-size: 100%;
+  background-color: white;
+}
 
 .flex-item {
   height:50px;
@@ -105,17 +134,11 @@ nav img {
   margin-right: auto
 }
 
-.parallax {
-  height: calc(100vh - 75px);
-  background: url(/static/src/images/skyline.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-
-}
-
 ////////////////////////////////
 		//Utility classes//
 ////////////////////////////////
+
+@include padding(0 5 10 15 20 30 40 50);
 
 .white {
   background-color: white;
@@ -135,6 +158,13 @@ nav img {
 		//Components//
 ////////////////////////////////
 
+.parallax {
+  height: calc(100vh - 75px);
+  background: url(/static/src/images/skyline.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+
+}
 
 ////////////////////////////////
 		//Django Toolbar//
