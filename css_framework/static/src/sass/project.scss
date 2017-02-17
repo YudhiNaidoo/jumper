@@ -100,7 +100,7 @@ div[class^="col-"] {
 ////////////////////////////////
 
 body {
-  color: black;
+  color: #171717;
   font-size: 100%;
   background-color: white;
 }
@@ -154,16 +154,24 @@ nav img {
 .img {
   width: 100%;
 }
+
 ////////////////////////////////
 		//Components//
 ////////////////////////////////
 
 .parallax {
   height: calc(100vh - 75px);
-  background: url(/static/src/images/skyline.jpg);
+  background: url(/static/src/images/placeholder.jpg);
   background-size: cover;
   background-attachment: fixed;
 
+}
+
+.single-post-container {
+  border: 3px solid gray;
+}
+.single-post-container__content {
+  padding: 0 .625em .625em .625em;
 }
 
 ////////////////////////////////

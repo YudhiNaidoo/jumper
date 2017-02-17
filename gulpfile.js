@@ -25,6 +25,7 @@
     // Dont include js from profiles page
     gulp.task('scripts', ['clean-scripts'], function(){
         gulp.src(['css_framework/static/src/js/jquery.js',
+            'css_framework/static/src/js/flickity.js',
             'css_framework/static/src/js/project.js'])
             .pipe(sourcemaps.init())
             .pipe(uglify())
