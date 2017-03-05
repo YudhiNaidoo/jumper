@@ -1,19 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="flex-row parallax">
-            </div>
-        </div>
-    </div>
-    <div class="container padding-top-30 padding-bottom-30">
-        <div class="row">
+    <div class="container">
+        <div class="row padding-bottom-30 padding-top-30">
             <div class="col-xs-12 col-sm-6">
                 <div class="single-post-container">
                     <img class="img" src="{% static 'src/images/placeholder-small.jpg' %}">
                     <div class="single-post-container__content">
-                        <h1>{% lorem 2 w %}</h1>
+                        <h2>{% lorem 2 w %}</h2>
                         <p><i class="fa fa-user"> </i> Speaker </p>
                         <p>{% lorem %}</p>
                         <a href="{% url 'detail' %}" class="flex-end">View</a>
@@ -24,7 +18,7 @@
                 <div class="single-post-container">
                     <img class="img" src="{% static 'src/images/placeholder-small.jpg' %}">
                     <div class="single-post-container__content">
-                        <h1>{% lorem 2 w %}</h1>
+                        <h2>{% lorem 2 w %}</h2>
                         <p><i class="fa fa-user"> </i> Speaker </p>
                         <p>{% lorem %}</p>
                         <a href="{% url 'detail' %}" class="flex-end">View</a>
@@ -35,7 +29,7 @@
                 <div class="single-post-container">
                     <img class="img" src="{% static 'src/images/placeholder-small.jpg' %}">
                     <div class="single-post-container__content">
-                        <h1>{% lorem 2 w %}</h1>
+                        <h2>{% lorem 2 w %}</h2>
                         <p><i class="fa fa-user"> </i> Speaker </p>
                         <p>{% lorem %}</p>
                         <a href="{% url 'detail' %}" class="flex-end">View</a>
@@ -46,7 +40,7 @@
                 <div class="single-post-container">
                     <img class="img" src="{% static 'src/images/placeholder-small.jpg' %}">
                     <div class="single-post-container__content">
-                        <h1>{% lorem 2 w %}</h1>
+                        <h2>{% lorem 2 w %}</h2>
                         <p><i class="fa fa-user"> </i> Speaker </p>
                         <p>{% lorem %}</p>
                         <a href="{% url 'detail' %}" class="flex-end">View</a>
