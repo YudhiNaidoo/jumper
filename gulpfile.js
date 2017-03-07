@@ -82,9 +82,12 @@
     // Merge Task
     gulp.task('test', function() {
         var streamOne = gulp.src(['css_framework/static/src/css/*.css'])
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write())
         .pipe(concat('file-one.css'));
 
         var streamTwo = gulp.src(['css_framework/static/src/sass/project.scss'])
+        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
             "browserslist": [
@@ -96,15 +99,17 @@
               ],
             cascade: false
         }))
+        .pipe(sourcemaps.write())
         .pipe(concat('file-two.css'));
+
 
         var mergedStream = merge(streamOne, streamTwo)
         .pipe(sourcemaps.init())
         .pipe(cssnano())
         .pipe(concat('final.css'))
         .pipe(rename({suffix:'.min'}))
-        .pipe(sourcemaps.write())
         .pipe(rev())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('css_framework/static/build/css'));
 
 
