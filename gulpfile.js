@@ -9,6 +9,7 @@
     var clean = require('gulp-clean');
     var sourcemaps = require('gulp-sourcemaps');
     var autoprefixer = require('gulp-autoprefixer');
+    var merge = require('merge-stream');
 
     // Clean old files in build before creating new file
     gulp.task('clean-scripts', function () {
@@ -75,6 +76,42 @@
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('css_framework/static/build/css'));
     });
+
+
+
+    // Merge Task
+    gulp.task('test', function() {
+        var streamOne = gulp.src(['css_framework/static/src/css/*.css'])
+        .pipe(concat('file-one.css'));
+
+        var streamTwo = gulp.src(['css_framework/static/src/sass/project.scss'])
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer({
+            "browserslist": [
+                "Chrome",
+                "Safari",
+                "Firefox",
+                "iOS",
+                "Explorer"
+              ],
+            cascade: false
+        }))
+        .pipe(concat('file-two.css'));
+
+        var mergedStream = merge(streamOne, streamTwo)
+        .pipe(sourcemaps.init())
+        .pipe(cssnano())
+        .pipe(concat('final.css'))
+        .pipe(rename({suffix:'.min'}))
+        .pipe(sourcemaps.write())
+        .pipe(rev())
+        .pipe(gulp.dest('css_framework/static/build/css'));
+
+
+        return mergedStream;
+    });
+    // End Merge Task
+
 
 
     // Default task
