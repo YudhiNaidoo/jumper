@@ -1,1 +1,95 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <img class="width-100" src="{% static 'src/images/aurora-005.jpg' %}">
+        </div>
+    </div>
+    <div class="container padding-bottom-30">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>{% lorem 3 w %}</h1>
+                <p>{% lorem 6 p %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row padding-bottom-30 padding-top-30">
+            <div class="col-xs-12 col-sm-6">
+                <div class="single-post-container">
+                    <img class="img" src="{% static 'src/images/placeholder-small.jpg' %}">
+                    <div class="single-post-container__content">
+                        <h2>{% lorem 2 w %}</h2>
+                        <p><i class="fa fa-user"> </i> Speaker </p>
+                        <p>{% lorem %}</p>
+                        <a href="{% url 'detail' %}" class="flex-end">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="single-post-container">
+                    <img class="img" src="{% static 'src/images/placeholder-small.jpg' %}">
+                    <div class="single-post-container__content">
+                        <h2>{% lorem 2 w %}</h2>
+                        <p><i class="fa fa-user"> </i> Speaker </p>
+                        <p>{% lorem %}</p>
+                        <a href="{% url 'detail' %}" class="flex-end">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="single-post-container">
+                    <img class="img" src="{% static 'src/images/placeholder-small.jpg' %}">
+                    <div class="single-post-container__content">
+                        <h2>{% lorem 2 w %}</h2>
+                        <p><i class="fa fa-user"> </i> Speaker </p>
+                        <p>{% lorem %}</p>
+                        <a href="{% url 'detail' %}" class="flex-end">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="single-post-container">
+                    <img class="img" src="{% static 'src/images/placeholder-small.jpg' %}">
+                    <div class="single-post-container__content">
+                        <h2>{% lorem 2 w %}</h2>
+                        <p><i class="fa fa-user"> </i> Speaker </p>
+                        <p>{% lorem %}</p>
+                        <a href="{% url 'detail' %}" class="flex-end">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container padding-top-30">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="flex-row flex-start">
+                    <div class="flex-item blue">Flex Start</div>
+                    <div class="flex-item blue">Flex Start</div>
+                    <div class="flex-item blue">Flex Start</div>
+                    <div class="flex-item blue">Flex Start</div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="flex-row flex-center">
+                    <div class="flex-item blue">Flex Center</div>
+                    <div class="flex-item blue">Flex Center</div>
+                    <div class="flex-item blue">Flex Center</div>
+                    <div class="flex-item blue">Flex Center</div>
+                </div>
+            </div>
+             <div class="col-xs-12">
+                <div class="flex-row flex-end">
+                    <div class="flex-item blue">Flex End</div>
+                    <div class="flex-item blue">Flex End</div>
+                    <div class="flex-item blue">Flex End</div>
+                    <div class="flex-item blue">Flex End</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block javascript %}
+{% endblock javascript %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <img class="width-100" src="{% static 'src/images/aurora-005.jpg' %}">
+        </div>
+    </div>
+    <div class="container padding-bottom-30">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>{% lorem 3 w %}</h1>
+                <p>{% lorem 6 p %}</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

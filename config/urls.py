@@ -10,6 +10,8 @@ from django.views import defaults as default_views
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
+    url(r'^list$', TemplateView.as_view(template_name='pages/list.html'), name='list'),
+    url(r'^detail$', TemplateView.as_view(template_name='pages/detail.html'), name='detail'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),

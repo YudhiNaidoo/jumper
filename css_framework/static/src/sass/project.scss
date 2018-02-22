@@ -1,62 +1,189 @@
-
-// project specific CSS goes here
-
 ////////////////////////////////
 		//Variables//
 ////////////////////////////////
 
-// Alert colors
-
-$white: #fff;
-$mint-green: #d6e9c6;
-$black: #000;
-$pink: #f2dede;
-$dark-pink: #eed3d7;
-$red: #b94a48;
-
-////////////////////////////////
-		//Alerts//
-////////////////////////////////
-
-// bootstrap alert CSS, translated to the django-standard levels of
-// debug, info, success, warning, error
-
-.alert-debug {
-  background-color: $white;
-  border-color: $mint-green;
-  color: $black;
+@mixin columns($values, $name) {
+  @each $var in $values {
+    .col-#{$name}-#{$var} {
+      flex-basis: calc(#{$var} * 8.33333333%);
+      max-width: calc(#{$var} * 8.33333333%);
+    }
+    .col-#{$name}-offset-#{$var} {
+      margin-left: calc(#{$var} * 8.33333333%);
+    }
+  }
 }
 
-.alert-error {
-  background-color: $pink;
-  border-color: $dark-pink;
-  color: $red;
+@mixin flex-containers($properties) {
+  @each $var in $properties {
+    .flex-#{$var} {
+      display: flex;
+      flex-direction: #{$var};
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@mixin padding($values) {
+  @each $var in $values {
+    .padding-top-#{$var} {
+      padding-top: #{$var}px;
+    }
+    .padding-bottom-#{$var} {
+      padding-bottom: #{$var}px;
+    }
+  }
+}
+//////////////////////////////////
+		//Grid//
+////////////////////////////////
+
+@include columns(1 2 3 4 5 6 7 8 9 10 11 12, xs);
+
+@media (min-width: 48em) {
+  .container {
+    width: 46.125em;
+    max-width: 100%;
+  }
+  @include columns(1 2 3 4 5 6 7 8 9 10 11 12, sm);
+}
+
+@media (min-width: 64em) {
+  .container {
+    width: 62.125em;
+    max-width: 100%;
+  }
+  @include columns(1 2 3 4 5 6 7 8 9 10 11 12, md);
+}
+
+@media (min-width: 75em) {
+  .container {
+    width: 73.125em;
+    max-width: 100%;
+  }
+  @include columns(1 2 3 4 5 6 7 8 9 10 11 12, lg);
+}
+
+div[class^="col-"] {
+  box-sizing: border-box;
+  padding: .5em;
+}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 1em;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+@include flex-containers(row row-reverse column column-reverse);
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+//////////////////////////////////
+		//Layout//
+////////////////////////////////
+
+body {
+  color: #171717;
+  font-size: 100%;
+  background-color: white;
+}
+
+h1 {
+  font-size: calc(1rem + 2.5vmin);
+}
+
+h2 {
+  font-size: calc(0.6rem + 2.5vmin);
+}
+
+p {
+  font-size: calc(0.5rem + 1.5vmin);
+}
+
+.flex-item {
+  height:50px;
+  flex:0 1 auto;
+  margin: .625em;
+  padding: .625em .625em 0;
+  font-size: 1.5em;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+ul {
+  display: flex;
+  margin: 0;
+  padding: .313em;
+}
+
+li {
+  flex: 0 0 auto;
+  padding: 1.25em .625em;
+  list-style: none;
+  margin: .155em;
+}
+
+nav img {
+  margin-right: auto
 }
 
 ////////////////////////////////
-		//Navbar//
+		//Utility classes//
 ////////////////////////////////
 
-// This is a fix for the bootstrap4 alpha release
+@include padding(0 5 10 15 20 30 40 50);
 
-.navbar {
-  border-radius: 0px;
+.white {
+  background-color: white;
+}
+.blue {
+  background-color: dodgerblue;
 }
 
-@media (max-width: 47.9em) {
-  .navbar-nav .nav-item {
-    display: inline-block;
-    float: none;
-    width: 100%;
-  }
+.grey {
+  background-color: grey;
+}
 
-  .navbar-nav .nav-item + .nav-item {
-    margin-left: 0;
-  }
+.width-100 {
+  width: 100%;
+}
 
-  .nav.navbar-nav.pull-xs-right {
-    float: none !important;
-  }
+////////////////////////////////
+		//Components//
+////////////////////////////////
+
+.parallax {
+  height: calc(100vh - 75px);
+  background: url(/static/src/images/placeholder.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+
+.single-post-container {
+  border: 3px solid gray;
+}
+.single-post-container__content {
+  padding: 0 .625em .625em .625em;
 }
 
 ////////////////////////////////
