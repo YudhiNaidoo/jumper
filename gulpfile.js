@@ -42,27 +42,6 @@
 
     });
 
-<<<<<<< HEAD
-    // Sass task
-    gulp.task('sass', function(){
-        gulp.src('css_framework/static/src/sass/project.scss')
-            .pipe(sass().on('error', sass.logError))
-            .pipe(autoprefixer({
-                "browserslist": [
-                    "Chrome",
-                    "Safari",
-                    "Firefox",
-                    "iOS",
-                    "Explorer"
-                  ],
-                cascade: false
-            }))
-            .pipe(concat('project.css'))
-            .pipe(gulp.dest('css_framework/static/src/css'));
-    });
-=======
->>>>>>> 2a0d65e72ba0c8de605a654ca24b0c8d33ae3cf5
-
     // CSS Task
     gulp.task('css', function() {
         var streamOne = gulp.src(['css_framework/static/src/css/*.css'])
